@@ -1,0 +1,44 @@
+/*  
+quick and dirty styling, will make pretty later
+*/
+
+button {
+  width:100px;
+}
+
+body {
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  background-color:grey;
+}
+
+.container {
+  margin:auto;
+  border: 1px black solid;
+  background-color:white;
+  width: 800px;
+}
+
+#streams{}
+.stream{
+  display:flex;
+  flex-flow:row no-wrap;
+  align-items:center;
+  border: 1px blue dotted;
+  margin: 10px;
+  justify-content:start;
+  align-items:flex-start;
+}
+.logo{
+  margin:5px;
+  width:80px;
+}
+.title{
+  margin-left:20px;
+  
+}
+.status{
+  margin-left:55px
+  
+}
