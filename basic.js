@@ -4,12 +4,13 @@ Basic functionality only. this is my first pass on this challenge and needs to b
 
 function displayTwitch(){
   //the channels we will GET
-  var channels =["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+  var channels =["ESL_SC2", "OgamingSC2", "comster404", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
   
   function getToTheData(channel) {
     var data, rawData;
     var cName, cStatus, logoUrl, url;
-    var url =  "https://wind-bow.gomix.me/twitch-api/streams/" + channel;
+    //var url =  "https://wind-bow.gomix.me/twitch-api/streams/" + channel;
+    var url =  "https://wind-bow.glitch.me/twitch-api/channels/" + channel;
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.onload = function(){
@@ -22,14 +23,20 @@ function displayTwitch(){
          cName = channel;
          
         //if not streaming 
-        if(data.stream === null) {
+        if(data.status === 404 || data.status === null) {
+          cStatus = "Error, this channel does not exist";
+          logoUrl = "http://";
+          url = "https://www.twitch.tv/";
+        } else
+        if(data.status === "offline") {
           cStatus = "Offline";
           logoUrl = "http://";
           url = "https://www.twitch.tv/" + cName;
-        } else {
-         cStatus = data.stream.channel.status;
-         logoUrl = data.stream.channel.logo;
-         url = data.stream.channel.url;
+        } 
+        else {
+         cStatus = data.status;
+         logoUrl = data.logo;
+         url = data.url;
         }
         
         //add our data to the page
